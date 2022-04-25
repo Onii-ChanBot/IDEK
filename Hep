@@ -48,26 +48,25 @@ if game.PlaceId == 6672200623 then
         local Window = Library.CreateLib("Clicker Madness!", "Midnight")
         local Main = Window:NewTab("Main")
         local MainSection = Main:NewSection("MainSection")
-
         MainSection:NewToggle("Click", "Clicks", function(v)
             getgenv().Click = v
             spawn(function ()
                 while true do
                     if not getgenv().Click then return end
                     game:GetService("ReplicatedStorage").Remotes.AddSpeed:FireServer()
+                    wait()
                 end
             end)
-            MainSection:NewButton("ButtonText", "ButtonInfo", function()
-                local PlayerHead = game.Players.LocalPlayer.Character.Head
-
-                for i, v in pairs(game:GetService("Workspace").OrbSpawns:GetDescendants()) do
-                    if v.Name == "TouchInterest" then
-                        firetouchinterest(PlayerHead, v.parent, 0)
-                        wait(0.1)
-                        firetouchinterest(PlayerHead, v.parent, 1)
-                    end
-                end
-            end)
-            
         end)
+        MainSection:NewButton("ButtonText", "ButtonInfo", function()
+            local PlayerHead = game.Players.LocalPlayer.Character.Head
+            for i, v in pairs(game:GetService("Workspace").OrbSpawns:GetDescendants()) do
+                if v.Name == "TouchInterest" then
+                    firetouchinterest(PlayerHead, v.parent, 0)
+                    wait(0.1)
+                    firetouchinterest(PlayerHead, v.parent, 1)
+                end
+            end
+        end)
+    end
 end
