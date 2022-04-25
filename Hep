@@ -69,4 +69,3 @@ if game.PlaceId == 6672200623 then
             end
         end)
     end
-end
